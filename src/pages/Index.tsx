@@ -5,7 +5,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Github, Mail, Linkedin, ExternalLink, Download, Moon, Sun, Menu, X, Phone, MapPin, Code, Sparkles } from 'lucide-react';
+import { Github, Mail, Linkedin, ExternalLink, Download, Moon, Sun, Menu,
+   X, Phone, MapPin, Code, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import AnimatedBackground from '@/components/AnimatedBackground';
 import AnimatedAvatar from '@/components/AnimatedAvatar';
@@ -85,7 +86,7 @@ const Index = () => {
       <AnimatedBackground />
       
       {/* Enhanced Navigation */}
-      <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-lg border-b border-white/10 z-50">
+      <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-3xl border-b border-white/10 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-2">
@@ -97,23 +98,23 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('home')} className="text-white/80 hover:text-white transition-colors relative group">
+              <button onClick={() => scrollToSection('home')} className=" transition-colors relative group">
                 Home
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
               </button>
-              <button onClick={() => scrollToSection('about')} className="text-white/80 hover:text-white transition-colors relative group">
+              <button onClick={() => scrollToSection('about')} className="transition-colors relative group">
                 About
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
               </button>
-              <button onClick={() => scrollToSection('skills')} className="text-white/80 hover:text-white transition-colors relative group">
+              <button onClick={() => scrollToSection('skills')} className="transition-colors relative group">
                 Skills
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
               </button>
-              <button onClick={() => scrollToSection('projects')} className="text-white/80 hover:text-white transition-colors relative group">
+              <button onClick={() => scrollToSection('projects')} className="transition-colors relative group">
                 Projects
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
               </button>
-              <button onClick={() => scrollToSection('contact')} className="text-white/80 hover:text-white transition-colors relative group">
+              <button onClick={() => scrollToSection('contact')} className="transition-colors relative group">
                 Contact
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all group-hover:w-full"></span>
               </button>
@@ -121,7 +122,7 @@ const Index = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setDarkMode(!darkMode)}
-                className="ml-4 text-white/80 hover:text-white border border-white/20 hover:border-white/40"
+                className="ml-4  border"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
@@ -133,7 +134,7 @@ const Index = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setDarkMode(!darkMode)}
-                className="mr-2 text-white/80 hover:text-white"
+                className="mr-2 border"
               >
                 {darkMode ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
               </Button>
@@ -141,7 +142,7 @@ const Index = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-white/80 hover:text-white"
+                className="border"
               >
                 {mobileMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
               </Button>
@@ -151,11 +152,11 @@ const Index = () => {
           {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4 space-y-2 animate-fade-in bg-black/40 backdrop-blur-sm rounded-lg p-4">
-              <button onClick={() => scrollToSection('home')} className="block w-full text-left p-2 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors">Home</button>
-              <button onClick={() => scrollToSection('about')} className="block w-full text-left p-2 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors">About</button>
-              <button onClick={() => scrollToSection('skills')} className="block w-full text-left p-2 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors">Skills</button>
-              <button onClick={() => scrollToSection('projects')} className="block w-full text-left p-2 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors">Projects</button>
-              <button onClick={() => scrollToSection('contact')} className="block w-full text-left p-2 text-white/80 hover:text-white hover:bg-white/10 rounded transition-colors">Contact</button>
+              <button onClick={() => scrollToSection('home')} className="block w-full text-left p-2 hover:bg-white/10 rounded transition-colors">Home</button>
+              <button onClick={() => scrollToSection('about')} className="block w-full text-left p-2   rounded transition-colors">About</button>
+              <button onClick={() => scrollToSection('skills')} className="block w-full text-left p-2  hover:bg-white/10 rounded transition-colors">Skills</button>
+              <button onClick={() => scrollToSection('projects')} className="block w-full text-left p-2 hover:bg-white/10 rounded transition-colors">Projects</button>
+              <button onClick={() => scrollToSection('contact')} className="block w-full text-left p-2  hover:bg-white/10 rounded transition-colors">Contact</button>
             </div>
           )}
         </div>
@@ -165,13 +166,13 @@ const Index = () => {
       <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4">
         <div className="container mx-auto text-center animate-fade-in">
           <AnimatedAvatar />
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-white/10 via-blue-400 to-purple-600 bg-clip-text text-transparent">
             Mohammad Sajid
           </h1>
-          <p className="text-xl md:text-2xl text-white/80 mb-8">
+          <p className="text-xl md:text-2xl mb-8">
             Full Stack Developer & Creative Problem Solver
           </p>
-          <p className="text-lg mb-8 max-w-2xl mx-auto text-white/70">
+          <p className="text-lg mb-8 max-w-2xl mx-auto ">
             Passionate about creating innovative web solutions that make a difference. 
             I love turning complex problems into simple, beautiful designs.
           </p>
@@ -183,7 +184,7 @@ const Index = () => {
               variant="outline" 
               size="lg" 
               onClick={() => scrollToSection('contact')}
-              className="hover-scale border-white/30 text-white hover:bg-white/10"
+              className="hover-scale border-white/30"
             >
               Get In Touch
             </Button>
@@ -194,25 +195,25 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-20 px-4 bg-black/20 backdrop-blur-sm">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h3 className="text-2xl font-semibold mb-4 text-white">Hello! I'm Mohammad Sajid</h3>
-              <p className="text-white/70 mb-6 leading-relaxed">
+              <h3 className="text-2xl font-semibold mb-4">Hello! I'm Mohammad Sajid</h3>
+              <p className=" mb-6 leading-relaxed">
                 I'm a passionate full-stack developer with over 3 years of experience creating 
                 digital experiences that are both functional and beautiful. I enjoy working 
                 on challenging projects that push the boundaries of what's possible on the web.
               </p>
-              <p className="text-white/70 mb-6 leading-relaxed">
+              <p className=" mb-6 leading-relaxed">
                 My goal is to build applications that not only meet user needs but exceed 
                 expectations through thoughtful design and seamless functionality.
               </p>
               <div className="flex space-x-4">
-                <Button variant="outline" size="sm" className="hover-scale border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="sm" className="hover-scale border-white/3">
                   <Github className="w-4 h-4 mr-2" />
                   GitHub
                 </Button>
-                <Button variant="outline" size="sm" className="hover-scale border-white/30 text-white hover:bg-white/10">
+                <Button variant="outline" size="sm" className="hover-scale border-white/30">
                   <Linkedin className="w-4 h-4 mr-2" />
                   LinkedIn
                 </Button>
@@ -232,13 +233,13 @@ const Index = () => {
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Skills & Technologies</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 ">Skills & Technologies</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 animate-fade-in">
             {skills.map((skill, index) => (
               <div key={skill} className="animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                 <Badge 
                   variant="secondary" 
-                  className="w-full justify-center py-3 text-center bg-white/10 border-white/20 text-white hover:bg-white/20 transition-colors duration-200 cursor-default backdrop-blur-sm"
+                  className="w-full justify-center py-3 text-center bg-white/10 border-white/2 hover:bg-white/20 transition-colors duration-200 cursor-default backdrop-blur-sm"
                 >
                   {skill}
                 </Badge>
@@ -249,9 +250,9 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-black/20 backdrop-blur-sm">
+      <section id="projects" className="py-20 px-4 ">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Featured Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 ">Featured Projects</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <Card key={project.title} className="hover:shadow-xl transition-all duration-300 hover-scale animate-fade-in bg-white/10 backdrop-blur-sm border-white/20" style={{ animationDelay: `${index * 0.2}s` }}>
@@ -263,17 +264,17 @@ const Index = () => {
                   />
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-white">{project.title}</h3>
-                  <p className="text-white/70 mb-4">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 ">{project.title}</h3>
+                  <p className=" mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="outline" className="text-xs border-white/30 text-white/80">
+                      <Badge key={tag} variant="outline" className="text-xs border-white/30">
                         {tag}
                       </Badge>
                     ))}
                   </div>
                   <div className="flex space-x-2">
-                    <Button size="sm" variant="outline" className="flex-1 border-white/30 text-white hover:bg-white/10">
+                    <Button size="sm" variant="outline" className="flex-1 border-white/30 hover:bg-white/10">
                       <Github className="w-4 h-4 mr-2" />
                       Code
                     </Button>
@@ -292,11 +293,11 @@ const Index = () => {
       {/* Resume Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-white">Resume</h2>
-          <p className="text-white/70 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Resume</h2>
+          <p className=" mb-8">
             Download my resume to learn more about my experience, education, and accomplishments.
           </p>
-          <Button size="lg" onClick={handleResumeDownload} className="hover-scale bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+          <Button size="lg" onClick={handleResumeDownload} className="hover-scale bg-gradient-to-r from-blue-400 to-purple-600 hover:from-blue-700 hover:to-purple-500">
             <Download className="w-4 h-4 mr-2" />
             Download Resume (PDF)
           </Button>
@@ -306,29 +307,29 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 bg-black/20 backdrop-blur-sm">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-white">Get In Touch</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 ">Get In Touch</h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div className="animate-fade-in">
-              <h3 className="text-2xl font-semibold mb-6 text-white">Let's Connect</h3>
-              <p className="text-white/70 mb-6 leading-relaxed">
+              <h3 className="text-2xl font-semibold mb-6 ">Let's Connect</h3>
+              <p className=" mb-6 leading-relaxed">
                 I'm always interested in hearing about new opportunities and exciting projects. 
                 Whether you have a question or just want to say hi, feel free to reach out!
               </p>
               <div className="space-y-4">
-                <div className="flex items-center text-white/80">
+                <div className="flex items-center ">
                   <Mail className="w-5 h-5 mr-3 text-blue-400" />
                   <span>mdsajid3037@gmail.com</span>
                 </div>
-                <div className="flex items-center text-white/80">
+                <div className="flex items-center">
                   <Phone className="w-5 h-5 mr-3 text-blue-400" />
                   <span>+91 9693281261</span>
                 </div>
                 <div className="flex space-x-4 mt-6">
-                  <Button variant="outline" size="sm" className="hover-scale border-white/30 text-white hover:bg-white/10">
+                  <Button variant="outline" size="sm" className="hover-scale border-white/30 hover:bg-white/10">
                     <Github className="w-4 h-4 mr-2" />
                     GitHub
                   </Button>
-                  <Button variant="outline" size="sm" className="hover-scale border-white/30 text-white hover:bg-white/10">
+                  <Button variant="outline" size="sm" className="hover-scale border-white/30  hover:bg-white/10">
                     <Linkedin className="w-4 h-4 mr-2" />
                     LinkedIn
                   </Button>
@@ -337,16 +338,16 @@ const Index = () => {
             </div>
             <form onSubmit={handleContactSubmit} className="space-y-6 animate-fade-in">
               <div>
-                <Input placeholder="Your Name" required className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Input placeholder="Your Name" required className="bg-white/10 border-white/20" />
               </div>
               <div>
-                <Input type="email" placeholder="Your Email" required className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Input type="email" placeholder="Your Email" required className="bg-white/10 border-white/20" />
               </div>
               <div>
-                <Input placeholder="Subject" required className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Input placeholder="Subject" required className="bg-white/10 border-white/20" />
               </div>
               <div>
-                <Textarea placeholder="Your Message" rows={5} required className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Textarea placeholder="Your Message" rows={5} required className="bg-white/10 border-white/20" />
               </div>
               <Button type="submit" className="w-full hover-scale bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                 Send Message
@@ -363,30 +364,30 @@ const Index = () => {
             <div className="text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start space-x-2 mb-4">
                 <Code className="h-6 w-6 text-blue-400" />
-                <h3 className="text-xl font-bold text-white">Mohammad Sajid</h3>
+                <h3 className="text-xl font-bold ">Mohammad Sajid</h3>
               </div>
-              <p className="text-white/60">Full Stack Developer passionate about creating amazing web experiences.</p>
+              <p className="">Full Stack Developer passionate about creating amazing web experiences.</p>
             </div>
             
             <div className="text-center">
-              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
               <div className="space-y-2">
-                <button onClick={() => scrollToSection('about')} className="block text-white/60 hover:text-white transition-colors">About</button>
-                <button onClick={() => scrollToSection('skills')} className="block text-white/60 hover:text-white transition-colors">Skills</button>
-                <button onClick={() => scrollToSection('projects')} className="block text-white/60 hover:text-white transition-colors">Projects</button>
+                <button onClick={() => scrollToSection('about')} className="block  transition-colors">About</button>
+                <button onClick={() => scrollToSection('skills')} className="block  transition-colors">Skills</button>
+                <button onClick={() => scrollToSection('projects')} className="block  transition-colors">Projects</button>
               </div>
             </div>
             
             <div className="text-center md:text-right">
-              <h4 className="text-lg font-semibold text-white mb-4">Connect</h4>
+              <h4 className="text-lg font-semibold  mb-4">Connect</h4>
               <div className="flex justify-center md:justify-end space-x-4">
-                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-white/10">
+                <Button variant="ghost" size="sm" className=" hover:bg-white/10">
                   <Github className="w-5 h-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-white/10">
+                <Button variant="ghost" size="sm" className=" hover:bg-white/10">
                   <Linkedin className="w-5 h-5" />
                 </Button>
-                <Button variant="ghost" size="sm" className="text-white/60 hover:text-white hover:bg-white/10">
+                <Button variant="ghost" size="sm" className=" hover:bg-white/10">
                   <Mail className="w-5 h-5" />
                 </Button>
               </div>
@@ -394,7 +395,7 @@ const Index = () => {
           </div>
           
           <div className="text-center pt-8 border-t border-white/10">
-            <p className="text-white/60">
+            <p className="">
               © 2024 Mohammad Sajid. Built with React & Tailwind CSS.
             </p>
           </div>
