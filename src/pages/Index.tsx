@@ -1,92 +1,160 @@
-
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Github, Mail, Linkedin, ExternalLink, Download, Moon, Sun, Menu,
-   X, Phone, MapPin, Code, Sparkles } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import AnimatedBackground from '@/components/AnimatedBackground';
-import AnimatedAvatar from '@/components/AnimatedAvatar';
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Github,
+  Mail,
+  Linkedin,
+  ExternalLink,
+  Download,
+  Moon,
+  Sun,
+  Menu,
+  X,
+  Phone,
+  MapPin,
+  Code,
+  Sparkles,
+} from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import AnimatedBackground from "@/components/AnimatedBackground";
+import AnimatedAvatar from "@/components/AnimatedAvatar";
+import emailjs from "@emailjs/browser";
 
 const Index = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [darkMode]);
 
   const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'HTML/CSS',
-    'Tailwind CSS', 'Git', 'C++', 'Machine Learning Fundamentals', 'SQL'
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "Python",
+    "HTML/CSS",
+    "Tailwind CSS",
+    "Git",
+    "C++",
+    "Machine Learning Fundamentals",
+    "SQL",
   ];
 
   const projects = [
     {
-      title: 'Blog Platform',
-      description: 'A modern blogging platform with user authentication and rich text editor',
-      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=300&fit=crop',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      tags: ['React', 'Node.js', 'SQL', 'Tailwind', 'Tinymce']
+      title: "Blog Platform",
+      description:
+        "A modern blogging platform with user authentication and rich text editor",
+      image:
+        "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&h=300&fit=crop",
+      github: "https://github.com",
+      demo: "https://demo.com",
+      tags: ["React", "Node.js", "SQL", "Tailwind", "Tinymce"],
     },
     {
-      title: 'Body mass Index Calculator',
-      description: 'A simple BMI calculator with a clean interface',
-      image: 'https://images.unsplash.com/photo-1600585154322-8f0b1c5d3c4e?w=500&h=300&fit=crop',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      tags: ['JavaScript', 'HTML', 'CSS']
+      title: "Body mass Index Calculator",
+      description: "A simple BMI calculator with a clean interface",
+      image:
+        "https://images.unsplash.com/photo-1600585154322-8f0b1c5d3c4e?w=500&h=300&fit=crop",
+      github: "https://github.com",
+      demo: "https://demo.com",
+      tags: ["JavaScript", "HTML", "CSS"],
     },
-    
+
     {
-      title: 'Currency Converter',
-      description: 'A real-time currency converter with live exchange rates',
-      image: 'https://images.unsplash.com/photo-1517430816045-df4b8c0d3c1e?w=500&h=300&fit=crop',
-      github: 'https://github.com',
-      demo: 'https://demo.com',
-      tags: ['React','tailwind','JavaScript', 'API', 'CSS']
-    
-    }
+      title: "Currency Converter",
+      description: "A real-time currency converter with live exchange rates",
+      image:
+        "https://images.unsplash.com/photo-1517430816045-df4b8c0d3c1e?w=500&h=300&fit=crop",
+      github: "https://github.com",
+      demo: "https://demo.com",
+      tags: ["React", "tailwind", "JavaScript", "API", "CSS"],
+    },
   ];
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
     setMobileMenuOpen(false);
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    emailjs
+      .send(
+        import.meta.env.VITE_EMAIL_SERVICE_ID,
+        import.meta.env.VITE_EMAIL_TEMPLATE_ID,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAIL_PUBLIC_KEY,
+      )
+      .then(() => {
+        toast({
+          title: "Message Sent!",
+          description: "Email sent successfully 🚀",
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        toast({
+          title: "Error",
+          description: "Failed to send message ❌",
+        });
+        console.error(error);
+      });
+  };
+  const handleResumeDownload = () => {
+    const link = document.createElement("a");
+    link.href = "/ReactDeveloper_Mohammad_Sajid.pdf";
+    link.download = "ReactDeveloper_Mohammad_Sajid.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     toast({
-      title: "Message Sent!",
-      description: "Thank you for your message. I'll get back to you soon!",
+      title: "Resume Downloaded",
+      description: "Download started successfully!",
     });
   };
-
-  const handleResumeDownload = () => {
-  const link = document.createElement('a');
-  link.href = '/ReactDeveloper_Mohammad_Sajid.pdf';
-  link.download = 'ReactDeveloper_Mohammad_Sajid.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  toast({
-    title: "Resume Downloaded",
-    description: "Download started successfully!",
-  });
-};
 
   return (
     <div className="min-h-screen text-foreground transition-colors duration-300 relative">
@@ -482,36 +550,56 @@ const Index = () => {
               onSubmit={handleContactSubmit}
               className="space-y-6 animate-fade-in"
             >
+              {/* Name */}
               <div>
                 <Input
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   placeholder="Your Name"
                   required
                   className="bg-white/10 border-white/20"
                 />
               </div>
+
+              {/* Email */}
               <div>
                 <Input
+                  name="email"
                   type="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Your Email"
                   required
                   className="bg-white/10 border-white/20"
                 />
               </div>
+
+              {/* Subject */}
               <div>
                 <Input
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                   placeholder="Subject"
                   required
                   className="bg-white/10 border-white/20"
                 />
               </div>
+
+              {/* Message */}
               <div>
                 <Textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   placeholder="Your Message"
                   rows={5}
                   required
                   className="bg-white/10 border-white/20"
                 />
               </div>
+
               <Button
                 type="submit"
                 className="w-full hover-scale bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
@@ -566,22 +654,37 @@ const Index = () => {
               <h4 className="text-lg font-semibold  mb-4">Connect</h4>
               <div className="flex justify-center md:justify-end space-x-4">
                 <a href="https://github.com/mdsajid3037" target="_blank">
-  <Button variant="ghost" size="sm" className="hover:bg-white/10">
-    <Github className="w-5 h-5" />
-  </Button>
-</a>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="hover:bg-white/10"
+                  >
+                    <Github className="w-5 h-5" />
+                  </Button>
+                </a>
 
-<a href="https://linkedin.com/in/themohammadsajid" target="_blank">
-  <Button variant="ghost" size="sm" className="hover:bg-white/10">
-    <Linkedin className="w-5 h-5" />
-  </Button>
-</a>
+                <a
+                  href="https://linkedin.com/in/themohammadsajid"
+                  target="_blank"
+                >
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="hover:bg-white/10"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </Button>
+                </a>
 
-<a href="mailto:mdsajid3037@gmail.com">
-  <Button variant="ghost" size="sm" className="hover:bg-white/10">
-    <Mail className="w-5 h-5" />
-  </Button>
-</a>
+                <a href="mailto:mdsajid3037@gmail.com">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="hover:bg-white/10"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
